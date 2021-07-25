@@ -1,0 +1,11 @@
+-- Query to select top active users
+SELECT count(songplay_id) total_songplay, users.first_name, users.last_name as name, users.level
+FROM songplays JOIN users ON users.user_id = songplays.user_id 
+GROUP BY users.first_name, users.last_name, users.level
+ORDER BY total_songplay DESC;
+
+-- Query to select sessions by plan
+SELECT count(songplay_id) total_songplay, users.level as plan
+FROM songplays JOIN users ON users.user_id = songplays.user_id
+GROUP BY plan
+ORDER BY total_songplay DESC;
